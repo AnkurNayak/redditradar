@@ -1,0 +1,116 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  color: white;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #ffffff33;
+  z-index: 49;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 560px;
+  max-width: 750px;
+}
+
+.input-box {
+  height: 40px;
+  align-items: center;
+  border-radius: 25px;
+  background-color: #333d42;
+  z-index: 49;
+  padding: 0 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.search-icon {
+  color: #aaa;
+  min-width: 24px;
+  max-width: 24px;
+  min-height: 24px;
+  max-height: 24px;
+  margin: 0 0.5rem;
+}
+
+.search-result {
+  position: absolute;
+  min-width: 560px;
+  max-width: 560px;
+  background-color: #333d42;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.search-opt {
+  margin: 40px 0 0 0;
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+  min-height: 40px;
+  flex-direction: column;
+  background-color: #2a3236;
+}
+
+.add-reddit:hover {
+  background: #333d42;
+}
+
+.add-reddit {
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px;
+  gap: 4px;
+  min-width: max-content;
+}
+
+.input-box input[type="text"] {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: inherit;
+  width: 100%;
+}
+
+.input-box input[type="text"]:focus {
+  border: none;
+  outline: none;
+}
+
+.input-box input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.input-box:hover {
+  background-color: #333d42;
+}
+
+/* Media query */
+@media (max-width: 640px) {
+  .input-wrapper {
+    min-width: 300px;
+    max-width: 300px;
+  }
+  .search-result {
+    min-width: 300px;
+    max-width: 300px;
+  }
+}
+
+.search-container {
+  transition: transform 0.5s ease;
+  transform: translateY(0);
+}
+
+.search-container.mid {
+  transform: translateY(200%);
+}
+
+.search-container.moved {
+  transform: translateY(0);
+}
