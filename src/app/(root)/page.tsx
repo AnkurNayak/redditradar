@@ -1,6 +1,6 @@
 "use client";
 
-import HomePage from "@/AppPages/HomePage";
+import HomePage from "@/appPages/HomePage";
 
 export default function LandingPage() {
   return <HomePage />;

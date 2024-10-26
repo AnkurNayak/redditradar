@@ -12,29 +12,23 @@
   flex-direction: column;
   position: relative;
   max-height: 100vh;
+  overflow-y: auto;
 }
 
 .error-card-container {
-  border: 1px solid white;
-  height: 100vh;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  position: absolute;
-  inset: 0;
+  height: 100%;
+  border-radius: 12px;
 }
 
 .error-card-content {
   border-radius: 1rem;
   background: black;
-  width: 90%;
+  width: 100%;
   height: 300px;
   z-index: 200;
-  margin-top: 80px;
 }
 
 .error-card-title {
@@ -59,15 +53,13 @@
 }
 
 /* Media query */
-/* Media query for medium screens */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .subreddit-lane-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Media query for small screens */
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .subreddit-lane-container {
     grid-template-columns: 1fr; /* 1 column */
   }

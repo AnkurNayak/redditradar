@@ -8,7 +8,6 @@ import {
   SubRedditLaneProps,
 } from "@/types/RedditModels";
 import ErrorCard from "@/components/homepage/ErrorCard";
-import { useEffect, useState } from "react";
 import { removeSubreddit } from "@/redux/slices/subRedditSlice";
 import ResultCard from "@/components/homepage/ResultCard";
 import CardLoader from "@/components/homepage/CardLoader";
@@ -16,23 +15,14 @@ import { ErrorInfo } from "@/types/ErrorModalProps";
 
 const HomePage = () => {
   const { subreddits } = useSelector((state: RootState) => state.subreddits);
-  const [hasError, setHasError] = useState(false);
-
-  console.log(subreddits);
+  // console.log(subreddits);
 
   return (
-    <div
-      className="home-page"
-      style={
-        hasError || subreddits.length === 0
-          ? { overflowY: "hidden" }
-          : { overflowY: "scroll" }
-      }
-    >
+    <div className="home-page">
       <div className="subreddit-lane-container">
         {subreddits.map((reddit, index) => (
           <div key={index}>
-            <SubRedditLane subreddit={reddit} setHasError={setHasError} />
+            <SubRedditLane subreddit={reddit} />
           </div>
         ))}
       </div>
@@ -40,23 +30,11 @@ const HomePage = () => {
   );
 };
 
-const SubRedditLane: React.FC<
-  SubRedditLaneProps & { setHasError: (error: boolean) => void }
-> = ({ subreddit, setHasError }) => {
+const SubRedditLane: React.FC<SubRedditLaneProps> = ({ subreddit }) => {
   const dispatch = useDispatch();
   const { data, isLoading, error } = useGetPostsBySubredditQuery(subreddit);
-  const [errorVisible, setErrorVisible] = useState(false);
-
-  useEffect(() => {
-    if (error) {
-      setErrorVisible(true);
-      setHasError(true);
-    }
-  }, [error, setHasError]);
 
   const closeErrorModal = () => {
-    setErrorVisible(false);
-    setHasError(false);
     dispatch(removeSubreddit(subreddit));
   };
 
@@ -85,7 +63,7 @@ const SubRedditLane: React.FC<
     <>
       {isLoading ? (
         <CardLoader />
-      ) : errorVisible && errorInfo ? (
+      ) : errorInfo ? (
         <ErrorCard
           errorInfo={errorInfo}
           onModalClose={closeErrorModal}
@@ -139,7 +117,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ data, subreddit }) => {
             </span>
           </div>
           <button
-            style={{ borderRadius: "25px" }}
+            style={{ borderRadius: "25px", cursor: "pointer" }}
             onClick={() => dispatch(removeSubreddit(subreddit))}
           >
             Remove Query
